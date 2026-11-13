@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Empanadas Lupita | Pedidos por WhatsApp</title>
+<meta name="description" content="Empanadas saladas y dulces horneadas por pedido. Escoge tus sabores y pide por WhatsApp.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@700;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --verde:#17402F; --verde-osc:#0F2E22; --dorado:#F0B545; --fondo:#F7F8F4;
+  --texto:#1B2420; --gris:#46524B; --linea:#DCE3DD; --acento:#D6361F;
+  --titulo:'Bricolage Grotesque',system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:12px}
+body{margin:0;font-family:'DM Sans',system-ui,sans-serif;color:var(--texto);background:var(--fondo);line-height:1.5;-webkit-text-size-adjust:100%}
+a{text-decoration:none}
+a:hover{opacity:.9}
+a:focus-visible,button:focus-visible{outline:3px solid var(--dorado);outline-offset:3px}
+.wrap{max-width:1200px;margin:0 auto}
+h1,h2{font-family:var(--titulo);font-weight:800;margin:0;letter-spacing:-.02em;overflow-wrap:break-word}
+h2{font-size:clamp(30px,6vw,44px);line-height:1.05;color:var(--verde)}
+section{padding:clamp(44px,8vw,72px) clamp(16px,4vw,24px)}
+
+/* Cabecera */
+header{background:var(--verde);padding:14px clamp(16px,4vw,24px)}
+header .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.marca{font-family:var(--titulo);font-weight:800;font-size:clamp(20px,5vw,24px);color:var(--dorado)}
+nav{display:flex;align-items:center;gap:8px 24px;flex-wrap:wrap}
+nav a.enlace{color:var(--fondo);font-weight:500;padding:10px 0}
+.btn{display:inline-block;font-weight:700;border-radius:999px;text-align:center}
+.btn-oro{background:var(--dorado);color:var(--verde);padding:12px 20px}
+
+/* Portada */
+.portada{background:var(--verde);padding-top:32px;padding-bottom:clamp(48px,8vw,72px)}
+.portada .wrap{display:flex;flex-wrap:wrap;align-items:center;gap:clamp(24px,5vw,40px)}
+.portada .texto{flex:1 1 360px;min-width:0;display:flex;flex-direction:column;gap:20px}
+.etiqueta{font-size:14px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--dorado)}
+h1{font-size:clamp(38px,9vw,68px);line-height:1.04;color:var(--fondo);text-wrap:balance}
+.portada p{margin:0;font-size:clamp(17px,2.4vw,20px);color:#D5E2DA;max-width:520px}
+.botones{display:flex;flex-wrap:wrap;gap:12px}
+.btn-acento{background:var(--acento);color:#fff;font-size:18px;padding:16px 28px}
+.btn-borde{border:2px solid var(--dorado);color:var(--dorado);font-size:18px;padding:14px 26px}
+.dibujo{flex:1 1 300px;min-width:0;display:flex;justify-content:center}
+.dibujo svg{width:100%;max-width:480px;height:auto}
+
+/* Sabores */
+#menu{padding-bottom:24px}
+.cab-sabores{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:28px}
+.filtros{display:flex;flex-wrap:wrap;gap:8px}
+.filtros button{font:inherit;font-size:16px;font-weight:700;padding:12px 20px;min-height:44px;border-radius:999px;cursor:pointer;background:transparent;color:var(--verde);border:2px solid var(--verde)}
+.filtros button[aria-pressed="true"]{background:var(--verde);color:var(--fondo)}
+.sabores{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(250px,100%),1fr));gap:16px}
+.tarjeta{background:#fff;border:1px solid var(--linea);border-radius:12px;padding:22px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.chip{align-self:flex-start;font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:4px 10px;border-radius:999px}
+.chip.salada{color:var(--verde);background:#DCEBE2}
+.chip.dulce{color:#8A4B00;background:#FBE7BC}
+.tarjeta .nombre{font-family:var(--titulo);font-weight:700;font-size:22px;line-height:1.15}
+.tarjeta .desc{font-size:16px;color:var(--gris)}
+
+/* Precios */
+.precios{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(220px,100%),1fr));gap:16px;margin:28px 0 20px}
+.precio{border:2px solid var(--verde);border-radius:12px;padding:26px;display:flex;flex-direction:column;gap:6px}
+.precio .et{font-size:16px;font-weight:700;color:var(--gris)}
+.precio .valor{font-family:var(--titulo);font-weight:800;font-size:clamp(34px,7vw,40px);color:var(--verde);font-variant-numeric:tabular-nums}
+.precio.dest{background:var(--verde)}
+.precio.dest .et{color:var(--dorado)}
+.precio.dest .valor{color:var(--fondo)}
+.nota{margin:0;font-size:16px;color:var(--gris)}
+
+/* Cómo pedir */
+#como-pedir{background:var(--dorado)}
+.pasos{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(240px,100%),1fr));gap:24px;margin:28px 0}
+.paso .num{font-family:var(--titulo);font-weight:800;font-size:clamp(44px,8vw,56px);line-height:1;color:var(--verde)}
+.paso .tit{font-weight:700;font-size:20px;color:var(--verde);margin-top:8px}
+.paso .tx{font-size:16px;color:#2E3B1F}
+.btn-verde{background:var(--verde);color:var(--dorado);font-size:18px;padding:16px 28px}
+
+/* Datos */
+.datos{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(240px,100%),1fr));gap:28px}
+.dato .et{font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gris)}
+.dato .val{font-size:20px;font-weight:500;overflow-wrap:anywhere}
+
+/* Pie */
+footer{background:var(--verde);padding:36px clamp(16px,4vw,24px)}
+footer .wrap{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px}
+footer .marca{font-size:24px}
+
+/* Botón flotante solo en celular */
+.flotante{display:none}
+@media (max-width:640px){
+  nav a.enlace{display:none}
+  .botones .btn{flex:1 1 100%}
+  body{padding-bottom:76px}
+  .flotante{display:block;position:fixed;left:16px;right:16px;bottom:calc(12px + env(safe-area-inset-bottom,0px));z-index:10;
+    background:var(--acento);color:#fff;font-weight:700;font-size:18px;text-align:center;padding:16px;border-radius:999px;box-shadow:0 6px 18px rgba(0,0,0,.28)}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="marca" data-marca></div>
+    <nav>
+      <a class="enlace" href="#menu">Sabores</a>
+      <a class="enlace" href="#precios">Precios</a>
+      <a class="enlace" href="#como-pedir">Cómo pedir</a>
+      <a class="btn btn-oro" data-wa>Pedir por WhatsApp</a>
+    </nav>
+  </div>
+</header>
+
+<section class="portada">
+  <div class="wrap">
+    <div class="texto">
+      <div class="etiqueta">Horneadas por pedido</div>
+      <h1>Empanadas calientitas, hechas hoy.</h1>
+      <p>Escoge tus sabores, mézclalos como quieras y mándanos tu pedido por WhatsApp. Lo preparamos y te lo entregamos o pasas por él.</p>
+      <div class="botones">
+        <a class="btn btn-acento" data-wa>Pedir por WhatsApp</a>
+        <a class="btn btn-borde" href="#menu">Ver sabores</a>
+      </div>
+    </div>
+    <div class="dibujo">
+      <svg viewBox="0 0 400 270" role="img" aria-label="Una empanada dorada con el borde repulgado">
+        <ellipse cx="200" cy="232" rx="190" ry="16" fill="#0F2E22"/>
+        <g stroke="#F7F8F4" stroke-width="5" stroke-linecap="round" fill="none" opacity=".45">
+          <path d="M150 74 C138 54 162 44 150 22"/><path d="M200 64 C188 44 212 34 200 12"/><path d="M250 74 C238 54 262 44 250 22"/>
+        </g>
+        <path d="M40 206 A160 140 0 0 1 360 206 Z" fill="#F0B545"/>
+        <path d="M72 194 A130 112 0 0 1 196 96" stroke="#FFD98A" stroke-width="12" stroke-linecap="round" fill="none" opacity=".75"/>
+        <g fill="#C98A1F" opacity=".5"><circle cx="250" cy="120" r="9"/><circle cx="292" cy="158" r="7"/><circle cx="214" cy="160" r="6"/><circle cx="130" cy="150" r="7"/></g>
+        <line x1="52" y1="206" x2="340" y2="206" stroke="#E3A634" stroke-width="22" stroke-linecap="round" stroke-dasharray="0 24"/>
+        <circle cx="328" cy="62" r="50" fill="#D6361F"/>
+        <text x="328" y="58" text-anchor="middle" fill="#fff" font-size="17" font-weight="800" letter-spacing="1">HECHAS</text>
+        <text x="328" y="80" text-anchor="middle" fill="#fff" font-size="22" font-weight="800">HOY</text>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<section id="menu">
+  <div class="wrap">
+    <div class="cab-sabores">
+      <h2>Nuestros sabores</h2>
+      <div class="filtros" id="filtros"></div>
+    </div>
+    <div class="sabores" id="sabores"></div>
+  </div>
+</section>
+
+<section id="precios">
+  <div class="wrap">
+    <h2>Precios</h2>
+    <div class="precios" id="precios-lista"></div>
+    <p class="nota">Puedes mezclar los sabores que quieras dentro de la misma media docena o docena.</p>
+  </div>
+</section>
+
+<section id="como-pedir">
+  <div class="wrap">
+    <h2>Cómo pedir</h2>
+    <div class="pasos">
+      <div class="paso"><div class="num">1</div><div class="tit">Elige tus sabores</div><div class="tx">Revisa la lista y decide cuántas piezas de cada sabor quieres.</div></div>
+      <div class="paso"><div class="num">2</div><div class="tit">Mándanos tu pedido</div><div class="tx">Escríbenos por WhatsApp con tu pedido, la fecha y la hora que lo necesitas.</div></div>
+      <div class="paso"><div class="num">3</div><div class="tit">Recíbelas calientitas</div><div class="tx">Pasas por ellas o te las llevamos. Te confirmamos el total antes de hornear.</div></div>
+    </div>
+    <a class="btn btn-verde" data-wa>Hacer mi pedido</a>
+  </div>
+</section>
+
+<section>
+  <div class="wrap datos">
+    <div class="dato"><div class="et">Horario</div><div class="val" data-horario></div></div>
+    <div class="dato"><div class="et">Entregas</div><div class="val" data-zona></div></div>
+    <div class="dato"><div class="et">WhatsApp</div><div class="val" data-tel></div></div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="marca" data-marca></div>
+    <a class="btn btn-acento" style="font-size:16px;padding:14px 24px" data-wa>Pedir por WhatsApp</a>
+  </div>
+</footer>
+
+<a class="flotante" data-wa>Pedir por WhatsApp</a>
+
+<script>
+/* =====================================================
+   DATOS DEL NEGOCIO: aquí se cambia todo lo editable
+   ===================================================== */
+var NEGOCIO = {
+  nombre:   'Empanadas Lupita',
+  telefono: '5500000000',            // 10 dígitos, sin espacios ni guiones
+  telefonoVisible: '55 0000 0000',
+  mensaje:  'Hola, quiero hacer un pedido de empanadas.',
+  color:    '#D6361F',               // color de los botones principales
+  horario:  '[DÍAS Y HORARIO DE ATENCIÓN]',
+  zona:     '[COLONIAS O ZONA DE ENTREGA]',
+  precios:  { pieza: '$[PRECIO]', media: '$[PRECIO]', docena: '$[PRECIO]' }
+};
+
+/* tipo: 'salada' o 'dulce'. Para agregar un sabor, copia una línea. */
+var SABORES = [
+  { nombre: 'Pollo con rajas y queso',     desc: 'Pollo deshebrado, rajas poblanas y queso que se derrite.', tipo: 'salada' },
+  { nombre: 'Carne con papa',              desc: 'Carne molida guisada con papa en cubitos y un toque de chile.', tipo: 'salada' },
+  { nombre: 'Queso con flor de calabaza',  desc: 'Queso fresco y flor de calabaza salteada con cebolla.', tipo: 'salada' },
+  { nombre: 'Atún a la mexicana',          desc: 'Atún con jitomate, cebolla y chile serrano.', tipo: 'salada' },
+  { nombre: 'Jamón con queso',             desc: 'La de siempre, para los que no se complican.', tipo: 'salada' },
+  { nombre: 'Rajas con elote',             desc: 'Rajas poblanas con granos de elote y un poco de crema.', tipo: 'salada' },
+  { nombre: 'Cajeta con nuez',             desc: 'Cajeta espesa y nuez picada, con azúcar por fuera.', tipo: 'dulce' },
+  { nombre: 'Piña con canela',             desc: 'Piña cocida a fuego lento con canela.', tipo: 'dulce' },
+  { nombre: 'Manzana con canela',          desc: 'Manzana en trozos, canela y un poco de piloncillo.', tipo: 'dulce' },
+  { nombre: 'Chocolate con plátano',       desc: 'Chocolate cremoso y plátano en rebanadas.', tipo: 'dulce' }
+];
+/* ===================================================== */
+
+(function () {
+  var $ = function (s, r) { return (r || document).querySelector(s); };
+  var $$ = function (s) { return Array.prototype.slice.call(document.querySelectorAll(s)); };
+
+  document.documentElement.style.setProperty('--acento', NEGOCIO.color);
+  document.title = NEGOCIO.nombre + ' | Pedidos por WhatsApp';
+
+  var wa = 'https://wa.me/52' + String(NEGOCIO.telefono).replace(/[^0-9]/g, '') +
+           '?text=' + encodeURIComponent(NEGOCIO.mensaje);
+  $$('[data-wa]').forEach(function (a) { a.href = wa; a.target = '_blank'; a.rel = 'noopener'; });
+  $$('[data-marca]').forEach(function (e) { e.textContent = NEGOCIO.nombre; });
+  $('[data-horario]').textContent = NEGOCIO.horario;
+  $('[data-zona]').textContent = NEGOCIO.zona;
+  $('[data-tel]').textContent = NEGOCIO.telefonoVisible;
+
+  var precios = [
+    ['Por pieza', NEGOCIO.precios.pieza, ''],
+    ['Media docena (6)', NEGOCIO.precios.media, ''],
+    ['Docena (12)', NEGOCIO.precios.docena, ' dest']
+  ];
+  $('#precios-lista').innerHTML = precios.map(function (p) {
+    return '<div class="precio' + p[2] + '"><div class="et">' + p[0] + '</div><div class="valor"></div></div>';
+  }).join('');
+  $$('#precios-lista .valor').forEach(function (v, i) { v.textContent = precios[i][1]; });
+
+  var filtro = 'todas';
+  var defs = [['todas', 'Todas'], ['salada', 'Saladas'], ['dulce', 'Dulces']];
+
+  function pintar() {
+    $('#filtros').innerHTML = '';
+    defs.forEach(function (d) {
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.textContent = d[1];
+      b.setAttribute('aria-pressed', filtro === d[0] ? 'true' : 'false');
+      b.onclick = function () { filtro = d[0]; pintar(); };
+      $('#filtros').appendChild(b);
+    });
+    var cont = $('#sabores');
+    cont.innerHTML = '';
+    SABORES.filter(function (s) { return filtro === 'todas' || s.tipo === filtro; })
+      .forEach(function (s) {
+        var t = document.createElement('div'); t.className = 'tarjeta';
+        var chip = document.createElement('div');
+        chip.className = 'chip ' + s.tipo;
+        chip.textContent = s.tipo === 'dulce' ? 'Dulce' : 'Salada';
+        var n = document.createElement('div'); n.className = 'nombre'; n.textContent = s.nombre;
+        var d = document.createElement('div'); d.className = 'desc'; d.textContent = s.desc;
+        t.appendChild(chip); t.appendChild(n); t.appendChild(d);
+        cont.appendChild(t);
+      });
+  }
+  pintar();
+})();
+</script>
+</body>
+</html>
